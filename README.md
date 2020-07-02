@@ -3,7 +3,7 @@ A package to handle and empower responsive development patterns with the help of
 and extension functions.
 
 ## Responsive by orientation
-
+Custom widget and extension methods to make working with device orientation possible.
 
 ### Custom Widget
 
@@ -17,7 +17,6 @@ ResponsiveByOrientation(
   portraitChild: portraitChild,
 );
 ```
-
 
 ### Extension Functions
 

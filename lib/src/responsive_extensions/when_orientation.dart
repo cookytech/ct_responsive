@@ -1,4 +1,4 @@
-part of 'extensions.dart';
+part of 'responsive_extensions.dart';
 
 Widget _$whenOrientationLandscape(
         Widget landscapeWidget, Widget originalWidget) =>
