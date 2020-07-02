@@ -1,3 +1,4 @@
 library ct_responsive;
 
-import 'package:flutter/material.dart';
+export 'src/extensions/extensions.dart';
+export 'src/custom_widgets/responsive_by_orientation.dart';
