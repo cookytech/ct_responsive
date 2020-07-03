@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 
 /// Widget that takes in a portraitChild and a landscapeChild and
@@ -18,10 +19,8 @@ class ResponsiveByOrientation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Orientation _orientation = MediaQuery.of(context).orientation;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child:
-          _orientation == Orientation.portrait ? portraitChild : landscapeChild,
-    );
+    return _orientation == Orientation.portrait
+        ? portraitChild
+        : landscapeChild;
   }
 }
