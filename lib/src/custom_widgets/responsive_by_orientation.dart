@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 
 /// Widget that takes in a portraitChild and a landscapeChild and
