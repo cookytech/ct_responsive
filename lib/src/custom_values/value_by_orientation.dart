@@ -17,4 +17,3 @@ class ValueByOrientation<T> {
         this._portraitValue = portraitValue,
         this._context = context;
 }
-
