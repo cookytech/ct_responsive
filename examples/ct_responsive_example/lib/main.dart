@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ct_responsive/ct_responsive.dart';
 
 void main() {
   runApp(MyApp());
@@ -98,11 +99,17 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'You have pushed the button this many times:'
+                  .whenPortrait(context, 'PushedButton: '),
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headline4.copyWith(
+                    fontSize: 34.0.whenLandscape(
+                      context,
+                      21.0,
+                    ),
+                  ),
             ),
           ],
         ),
