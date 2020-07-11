@@ -2,11 +2,12 @@ import 'package:ct_responsive/ct_responsive.dart';
 import 'package:ct_test_helpers/ct_test_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+ 
 main() {
   final testPortraitSize = Size(320, 800);
   final testLandscapeSize = Size(800, 320);
-  group("Value Extensions", () {
+
+  group("Extension Functions", () {
     group("valueWhenOrientationLandscape", () {
       testWidgets("gives landscape value when device landscape",
           (WidgetTester tester) async {
@@ -20,6 +21,8 @@ main() {
         final findLandscapeText = find.text(landscapeText);
         expect(findLandscapeText, findsOneWidget);
       });
+
+      
       testWidgets("gives original value when device portrait",
           (WidgetTester tester) async {
         const originalText = "portrait";
@@ -56,9 +59,32 @@ main() {
           return Text(
               originalText.valueWhenOrientationPortrait(context, portraitText));
         }).wrapWithMaterialApp());
-        final findPortraitText = find.text(portraitText);
+        final findPortraitText = find.text(originalText);
         expect(findPortraitText, findsOneWidget);
       });
     });
   });
+
+  group("ValueByOrientation", () {
+    final landScapeTest = "landscape";
+    final portraitTest = "portrait";
+
+    // testWidgets("instantiates", (WidgetTester tester) async{
+    //   await tester.pump(ValueByOrientationTester(text: "something".,))
+
+    // });
+  });
 }
+
+class ValueByOrientationTester extends StatelessWidget {
+  final String text;
+  const ValueByOrientationTester({Key key, this.text}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(text),
+    );
+  }
+}
+
+class DummyContext extends Mock
