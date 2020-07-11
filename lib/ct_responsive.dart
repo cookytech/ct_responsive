@@ -1,24 +1,11 @@
 library ct_responsive;
 
-import 'package:flutter/material.dart';
+// custom widgets
+export 'src/custom_widgets/responsive_by_orientation.dart';
 
-/// Widget that takes in a portraitChild and a landscapeChild and
-/// renders the child based on device orientation.
-class ResponsiveByOrientation extends StatelessWidget {
-  final Widget landscapeChild;
-  final Widget portraitChild;
+// custom values
+export 'src/custom_values/value_by_orientation.dart';
 
-  const ResponsiveByOrientation(
-      {Key key, @required this.landscapeChild, @required this.portraitChild})
-      : assert(landscapeChild != null),
-        assert(portraitChild != null),
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final Orientation _orientation = MediaQuery.of(context).orientation;
-    return _orientation == Orientation.portrait
-        ? portraitChild
-        : landscapeChild;
-  }
-}
+// extension functions
+export 'src/extension_functions/responsive_extensions.dart';
+export 'src/extension_functions/value_extensions.dart';
