@@ -100,12 +100,12 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               'You have pushed the button this many times:'
-                  .whenPortrait(context, 'PushedButton: '),
+                  .valueWhenOrientationPortrait(context, 'PushedButton: '),
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4.copyWith(
-                    fontSize: 34.0.whenLandscape(
+                    fontSize: 34.0.valueWhenOrientaitonLandscape(
                       context,
                       21.0,
                     ),
