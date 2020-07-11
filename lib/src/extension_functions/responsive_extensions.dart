@@ -3,6 +3,7 @@ import 'package:ct_responsive/src/custom_widgets/responsive_by_platform.dart';
 import 'package:flutter/material.dart';
 
 part 'when_orientation.dart';
+part 'when_platform.dart';
 
 /// Extension wrapper on [Widget] that contains all the responsive functions of this library
 extension ResponsiveExtensions on Widget {

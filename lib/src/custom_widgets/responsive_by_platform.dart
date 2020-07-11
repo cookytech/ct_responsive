@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// Widget takes a child for possible platforms and
@@ -35,22 +34,23 @@ class ResponsiveByPlatform extends StatelessWidget {
     this.windowsChild,
     this.linuxChild,
     this.macOsChild,
-    this.defaultChild,
+    @required this.defaultChild,
   })  : assert(defaultChild != null),
         super(key: key);
   @override
   Widget build(BuildContext context) {
-    if (Platform.isAndroid) {
+    final _currentTargetPlatform = Theme.of(context).platform;
+    if (_currentTargetPlatform == TargetPlatform.android) {
       return androidChild ?? defaultChild;
-    } else if (Platform.isIOS) {
+    } else if (_currentTargetPlatform == TargetPlatform.iOS) {
       return iosChild ?? defaultChild;
-    } else if (Platform.isFuchsia) {
+    } else if (_currentTargetPlatform == TargetPlatform.fuchsia) {
       return fuchsiaChild ?? defaultChild;
-    } else if (Platform.isLinux) {
+    } else if (_currentTargetPlatform == TargetPlatform.linux) {
       return linuxChild ?? defaultChild;
-    } else if (Platform.isMacOS) {
+    } else if (_currentTargetPlatform == TargetPlatform.macOS) {
       return macOsChild ?? defaultChild;
-    } else if (Platform.isWindows) {
+    } else if (_currentTargetPlatform == TargetPlatform.windows) {
       return windowsChild ?? defaultChild;
     } else {
       return defaultChild;
