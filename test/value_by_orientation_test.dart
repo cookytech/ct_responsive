@@ -4,28 +4,57 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {
+  final testPortraitSize = Size(320, 800);
+  final testLandscapeSize = Size(800, 320);
   group("Value Extensions", () {
-    group("when orientation is landscape", () {
-      testWidgets("get landscape value when landscape",
+    group("valueWhenOrientationLandscape", () {
+      testWidgets("gives landscape value when device landscape",
           (WidgetTester tester) async {
-        const portraitText = "portrait";
+        const originalText = "portrait";
         const landscapeText = "landscape";
-        tester.setDeviceSize(Size(800, 320));
+        tester.setDeviceSize(testLandscapeSize);
         await tester.pumpWidget(Builder(builder: (context) {
-          return Text(portraitText.whenLandscape(context, landscapeText));
+          return Text(originalText.valueWhenOrientaitonLandscape(
+              context, landscapeText));
         }).wrapWithMaterialApp());
         final findLandscapeText = find.text(landscapeText);
         expect(findLandscapeText, findsOneWidget);
       });
+      testWidgets("gives original value when device portrait",
+          (WidgetTester tester) async {
+        const originalText = "portrait";
+        const landscapeText = "landscape";
+        tester.setDeviceSize(testPortraitSize);
+        await tester.pumpWidget(Builder(builder: (context) {
+          return Text(originalText.valueWhenOrientaitonLandscape(
+              context, landscapeText));
+        }).wrapWithMaterialApp());
+        final findLandscapeText = find.text(originalText);
+        expect(findLandscapeText, findsOneWidget);
+      });
     });
-    group("when orientation is portrait", () {
-      testWidgets("get portrait value when portrait",
+    group("valueWhenOrientationPortrait", () {
+      testWidgets("gives portrait value when orientation is portrait",
           (WidgetTester tester) async {
         const portraitText = "portrait";
-        const landscapeText = "landscape";
+        const originalText = "landscape";
         tester.setDeviceSize(Size(320, 800));
         await tester.pumpWidget(Builder(builder: (context) {
-          return Text(landscapeText.whenPortrait(context, portraitText));
+          return Text(
+              originalText.valueWhenOrientationPortrait(context, portraitText));
+        }).wrapWithMaterialApp());
+        final findPortraitText = find.text(portraitText);
+        expect(findPortraitText, findsOneWidget);
+      });
+
+      testWidgets("gives original value when orientation is landscape",
+          (WidgetTester tester) async {
+        const portraitText = "portrait";
+        const originalText = "landscape";
+        tester.setDeviceSize(testLandscapeSize);
+        await tester.pumpWidget(Builder(builder: (context) {
+          return Text(
+              originalText.valueWhenOrientationPortrait(context, portraitText));
         }).wrapWithMaterialApp());
         final findPortraitText = find.text(portraitText);
         expect(findPortraitText, findsOneWidget);
