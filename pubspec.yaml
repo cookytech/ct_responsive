@@ -1,7 +1,6 @@
 name: ct_responsive
-description: Cookytech's comprehensive respponsive capabilites package
-version: 0.0.1+1
-author: Raveesh Agarwal<raveesh@cookytech.in>
+description: A package to add comprehensive responsive capabilities with concise and easy syntax. An open-source effort from cookytech.
+version: 0.1.0+2
 homepage: https://cookytech.in
 
 environment:
