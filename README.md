@@ -34,9 +34,9 @@ portraitChild.whenOrientationLandscape(landScapeChild);
 landscapeChild.whenOrientationPortrait(portraitChild);
 ```
 ### ValueByOrientation
-- [ ] Works on values of any type. 
-- [ ] Takes `portraitValue`, `landscapeValue` and `BuildContext`
-- [ ] Returns the correct value using `MediaQuery` internally and exposes it on the `value` getter
+- [x] Works on values of any type. 
+- [x] Takes `portraitValue`, `landscapeValue` and `BuildContext`
+- [x] Returns the correct value using `MediaQuery` internally and exposes it on the `value` getter
 
 ```dart
 Text(
