@@ -78,7 +78,7 @@ main() {
     });
 
     /// This is very difficult to mock mediaquery data with a Mock Buildcontext
-    /// TODO: Maybe a candidate for a issue in ct_test_helpers
+    /// Github Issue: [ct_test_helpers/1](https://github.com/cookytech/ct_test_helpers/issues/1)
     /// we need a mock context for running unit tests. For now we can test these values
     /// using a tester widget and running widget tests
     testWidgets("returns landscape value in landscape mode",
