@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 main() {
   final defaultText = Text("default");
-  group("Responsive By Platform Widget", () {
+  group("ResponsiveByPlatform", () {
     test("Can Construct", () {
       final widget = ResponsiveByPlatform(
         macOsChild: Text("macos"),
@@ -15,7 +15,7 @@ main() {
       ).wrapWithMaterialApp();
       expect(widget, isNotNull);
     });
-    testWidgets("return android widget when target platform is android",
+    testWidgets("shows android widget when target platform is android",
         (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
       await tester.pumpWidget(ResponsiveByPlatform(
@@ -29,7 +29,7 @@ main() {
       expect(findAndroidText, findsOneWidget);
       expect(findDefaultText, findsNothing);
     });
-    testWidgets("return ios widget when target platform is ios",
+    testWidgets("shows ios widget when target platform is ios",
         (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
       await tester.pumpWidget(ResponsiveByPlatform(
@@ -43,7 +43,7 @@ main() {
       expect(findIosText, findsOneWidget);
       expect(findDefaultText, findsNothing);
     });
-    testWidgets("return fuchsia widget when target platform is fuchsia",
+    testWidgets("shows fuchsia widget when target platform is fuchsia",
         (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
       await tester.pumpWidget(ResponsiveByPlatform(
@@ -57,7 +57,7 @@ main() {
       expect(findFuchsiaText, findsOneWidget);
       expect(findDefaultText, findsNothing);
     });
-    testWidgets("return macos widget when target platform is macos",
+    testWidgets("shows macos widget when target platform is macos",
         (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
       await tester.pumpWidget(ResponsiveByPlatform(
@@ -71,7 +71,7 @@ main() {
       expect(findMacOsText, findsOneWidget);
       expect(findDefaultText, findsNothing);
     });
-    testWidgets("return windows widget when target platform is windows",
+    testWidgets("shows windows widget when target platform is windows",
         (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.windows;
       await tester.pumpWidget(ResponsiveByPlatform(
@@ -85,7 +85,7 @@ main() {
       expect(findWindowsText, findsOneWidget);
       expect(findDefaultText, findsNothing);
     });
-    testWidgets("return linux widget when platform is linux",
+    testWidgets("shows linux widget when target platform is linux",
         (WidgetTester tester) async {
       debugDefaultTargetPlatformOverride = TargetPlatform.linux;
       await tester.pumpWidget(ResponsiveByPlatform(
@@ -100,7 +100,7 @@ main() {
       expect(findDefaultText, findsNothing);
     });
   });
-  group("test extensions functions for platform", () {
+  group("Extension Functions", () {
     group("Test for when platform is extensions", () {
       testWidgets("shows android when android", (WidgetTester tester) async {
         debugDefaultTargetPlatformOverride = TargetPlatform.android;
@@ -173,9 +173,9 @@ main() {
       });
     });
     group("Test for when platform is not extensions", () {});
-    group("Test for when These platform is extensions", () {
-      group("when same platform is provided", () {
-        testWidgets("shows when a single platform is provided",
+    group("whenThesePlatforms", () {
+      group("when a single platform ios is provided", () {
+        testWidgets("shows ios when platform is ios",
             (WidgetTester tester) async {
           debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
           await tester.pumpWidget(defaultText.whenThesePlatforms(
@@ -187,24 +187,7 @@ main() {
           // Setting this null will reset it to the current platform
           debugDefaultTargetPlatformOverride = null;
         });
-        testWidgets("shows when more than one  platform is provided",
-            (WidgetTester tester) async {
-          debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-          await tester.pumpWidget(defaultText.whenThesePlatforms(Text("ios"), [
-            TargetPlatform.iOS,
-            TargetPlatform.android
-          ]).wrapWithMaterialApp());
-          debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
-          final findIosText = find.text("ios");
-          final findDefaultText = find.text("default");
-          expect(findIosText, findsOneWidget);
-          expect(findDefaultText, findsNothing);
-          // Setting this null will reset it to the current platform
-          debugDefaultTargetPlatformOverride = null;
-        });
-      });
-      group("when different platform is provided", () {
-        testWidgets("shows when a single platform is provided",
+        testWidgets("shows default when target platform is android",
             (WidgetTester tester) async {
           debugDefaultTargetPlatformOverride = TargetPlatform.android;
           await tester.pumpWidget(defaultText.whenThesePlatforms(
@@ -216,8 +199,316 @@ main() {
           // Setting this null will reset it to the current platform
           debugDefaultTargetPlatformOverride = null;
         });
+        testWidgets("shows default when target platform is fuchsia",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+          await tester.pumpWidget(defaultText.whenThesePlatforms(
+              Text("ios"), [TargetPlatform.iOS]).wrapWithMaterialApp());
+          final findIosText = find.text("ios");
+          final findDefaultText = find.text("default");
+          expect(findIosText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is macos",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+          await tester.pumpWidget(defaultText.whenThesePlatforms(
+              Text("ios"), [TargetPlatform.iOS]).wrapWithMaterialApp());
+          final findIosText = find.text("ios");
+          final findDefaultText = find.text("default");
+          expect(findIosText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is windows",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.windows;
+          await tester.pumpWidget(defaultText.whenThesePlatforms(
+              Text("ios"), [TargetPlatform.iOS]).wrapWithMaterialApp());
+          final findIosText = find.text("ios");
+          final findDefaultText = find.text("default");
+          expect(findIosText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is linux",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.linux;
+          await tester.pumpWidget(defaultText.whenThesePlatforms(
+              Text("ios"), [TargetPlatform.iOS]).wrapWithMaterialApp());
+          final findIosText = find.text("ios");
+          final findDefaultText = find.text("default");
+          expect(findIosText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+      });
+      group("when multiple platforms android and ios  are provided", () {
+        testWidgets("shows platform found when target platform is android",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.android;
+          await tester.pumpWidget(defaultText.whenThesePlatforms(
+              Text("platform found"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findPlatformFoundText = find.text("platform found");
+          final findDefaultText = find.text("default");
+          expect(findPlatformFoundText, findsOneWidget);
+          expect(findDefaultText, findsNothing);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows platform found when target platform is ios",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+          await tester.pumpWidget(defaultText.whenThesePlatforms(
+              Text("platform found"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findPlatformFoundText = find.text("platform found");
+          final findDefaultText = find.text("default");
+          expect(findPlatformFoundText, findsOneWidget);
+          expect(findDefaultText, findsNothing);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is fuchsia",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+          await tester.pumpWidget(defaultText.whenThesePlatforms(
+              Text("platform found"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findPlatformFoundText = find.text("platform found");
+          final findDefaultText = find.text("default");
+          expect(findPlatformFoundText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default  when target platform is macos",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+          await tester.pumpWidget(defaultText.whenThesePlatforms(
+              Text("platform found"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findPlatformFoundText = find.text("platform found");
+          final findDefaultText = find.text("default");
+          expect(findPlatformFoundText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is windows",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.windows;
+          await tester.pumpWidget(defaultText.whenThesePlatforms(
+              Text("platform found"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findPlatformFoundText = find.text("platform found");
+          final findDefaultText = find.text("default");
+          expect(findPlatformFoundText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is linux",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.linux;
+          await tester.pumpWidget(defaultText.whenThesePlatforms(
+              Text("platform found"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findPlatformFoundText = find.text("platform found");
+          final findDefaultText = find.text("default");
+          expect(findPlatformFoundText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
       });
     });
-    group("when not these platform", () {});
+    group("whenNotThesePlatforms", () {
+      group("when a single platform ios is provided", () {
+        final iosText = Text("ios");
+        testWidgets("shows default when platform is ios",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+          await tester.pumpWidget(iosText.whenNotThesePlatforms(
+              defaultText, [TargetPlatform.iOS]).wrapWithMaterialApp());
+          final findIosText = find.text("ios");
+          final findDefaultText = find.text("default");
+          expect(findIosText, findsOneWidget);
+          expect(findDefaultText, findsNothing);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is android",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.android;
+          await tester.pumpWidget(iosText.whenNotThesePlatforms(
+              defaultText, [TargetPlatform.iOS]).wrapWithMaterialApp());
+          final findIosText = find.text("ios");
+          final findDefaultText = find.text("default");
+          expect(findIosText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is fuchsia",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+          await tester.pumpWidget(iosText.whenNotThesePlatforms(
+              defaultText, [TargetPlatform.iOS]).wrapWithMaterialApp());
+          final findIosText = find.text("ios");
+          final findDefaultText = find.text("default");
+          expect(findIosText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is macos",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+          await tester.pumpWidget(iosText.whenNotThesePlatforms(
+              defaultText, [TargetPlatform.iOS]).wrapWithMaterialApp());
+          final findIosText = find.text("ios");
+          final findDefaultText = find.text("default");
+          expect(findIosText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is windows",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.windows;
+          await tester.pumpWidget(iosText.whenNotThesePlatforms(
+              defaultText, [TargetPlatform.iOS]).wrapWithMaterialApp());
+          final findIosText = find.text("ios");
+          final findDefaultText = find.text("default");
+          expect(findIosText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is linux",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.linux;
+          await tester.pumpWidget(iosText.whenNotThesePlatforms(
+              defaultText, [TargetPlatform.iOS]).wrapWithMaterialApp());
+          final findIosText = find.text("ios");
+          final findDefaultText = find.text("default");
+          expect(findIosText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+      });
+      group("when multiple platforms android and ios  are provided", () {
+        testWidgets("shows default when target platform is android",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.android;
+          await tester.pumpWidget(defaultText.whenNotThesePlatforms(
+              Text("notThesePlatform"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findNotThesePlatformText = find.text("notThesePlatform");
+          final findDefaultText = find.text("default");
+          expect(findNotThesePlatformText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows default when target platform is ios",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+          await tester.pumpWidget(defaultText.whenNotThesePlatforms(
+              Text("notThesePlatform"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findNotThesePlatformText = find.text("notThesePlatform");
+          final findDefaultText = find.text("default");
+          expect(findNotThesePlatformText, findsNothing);
+          expect(findDefaultText, findsOneWidget);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows notThesePlatform when target platform is fuchsia",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+          await tester.pumpWidget(defaultText.whenNotThesePlatforms(
+              Text("notThesePlatform"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findNotThesePlatformText = find.text("notThesePlatform");
+          final findDefaultText = find.text("default");
+          expect(findNotThesePlatformText, findsOneWidget);
+          expect(findDefaultText, findsNothing);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows notThesePlatform when target platform is macos",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+          await tester.pumpWidget(defaultText.whenNotThesePlatforms(
+              Text("notThesePlatform"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findNotThesePlatformText = find.text("notThesePlatform");
+          final findDefaultText = find.text("default");
+          expect(findNotThesePlatformText, findsOneWidget);
+          expect(findDefaultText, findsNothing);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows notThesePlatform when target platform is windows",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.windows;
+          await tester.pumpWidget(defaultText.whenNotThesePlatforms(
+              Text("notThesePlatform"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findNotThesePlatformText = find.text("notThesePlatform");
+          final findDefaultText = find.text("default");
+          expect(findNotThesePlatformText, findsOneWidget);
+          expect(findDefaultText, findsNothing);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+        testWidgets("shows notThesePlatform when target platform is linux",
+            (WidgetTester tester) async {
+          debugDefaultTargetPlatformOverride = TargetPlatform.linux;
+          await tester.pumpWidget(defaultText.whenNotThesePlatforms(
+              Text("notThesePlatform"), [
+            TargetPlatform.iOS,
+            TargetPlatform.android
+          ]).wrapWithMaterialApp());
+          final findNotThesePlatformText = find.text("notThesePlatform");
+          final findDefaultText = find.text("default");
+          expect(findNotThesePlatformText, findsOneWidget);
+          expect(findDefaultText, findsNothing);
+          // Setting this null will reset it to the current platform
+          debugDefaultTargetPlatformOverride = null;
+        });
+      });
+    });
   });
 }

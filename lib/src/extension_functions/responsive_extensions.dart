@@ -156,7 +156,7 @@ extension ResponsiveExtensions on Widget {
   /// '''
   Widget whenThesePlatforms(
           Widget platformChild, List<TargetPlatform> platforms) =>
-      _$whenThesePlatform(this, platformChild, platforms);
+      _$whenThesePlatforms(this, platformChild, platforms);
 
   /// Extension function, uses the source as defaultChild and the parameter as
   /// the notPlatformChild
@@ -165,7 +165,7 @@ extension ResponsiveExtensions on Widget {
   /// '''dart
   /// defaultWidget.whenNotThesePlatformIos(notPlatformChild);
   /// '''
-  Widget whenNotThesePlatform(
+  Widget whenNotThesePlatforms(
           Widget notPlatformChild, List<TargetPlatform> platforms) =>
-      _$whenNotThesePlatform(this, notPlatformChild, platforms);
+      _$whenNotThesePlatforms(this, notPlatformChild, platforms);
 }

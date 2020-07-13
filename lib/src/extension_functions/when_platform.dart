@@ -64,7 +64,7 @@ Widget _$whenPlatformIsNotMacOs(Widget macOsChild, Widget notMacOsChild) =>
       defaultChild: notMacOsChild,
       macOsChild: macOsChild,
     );
-Widget _$whenThesePlatform(Widget notPlatformChild, Widget platformChild,
+Widget _$whenThesePlatforms(Widget notPlatformChild, Widget platformChild,
         List<TargetPlatform> platforms) =>
     ResponsiveByPlatform(
       defaultChild: notPlatformChild,
@@ -87,7 +87,7 @@ Widget _$whenThesePlatform(Widget notPlatformChild, Widget platformChild,
           ? platformChild
           : notPlatformChild,
     );
-Widget _$whenNotThesePlatform(Widget platformChild, Widget notPlatformChild,
+Widget _$whenNotThesePlatforms(Widget platformChild, Widget notPlatformChild,
         List<TargetPlatform> platforms) =>
     ResponsiveByPlatform(
       defaultChild: notPlatformChild,
