@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ct_test_helpers/ct_test_helpers.dart';
 
 main() {
-  group("Custom widget", () {
+  group("ResponsiveByOrientation", () {
     test("can construct", () {
       final widget = ResponsiveByOrientation(
         landscapeChild: Container(),
